@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="main-wrapper">
+    <div class="header-container">
+        <div class="header-inner-cont">
+            <img src="./Assests/TestLogo.svg" alt="Header-Logo" />
+            <div class="header-items-cont">
+                <button class="h-item-button">
+                    <div class="h-item-cont">
+                        <img src="./Assests/home icon.svg" alt="Header-Logo" class="h-item-img" />
+                        <p class="n-menu" >Overview</p>
+                    </div>
+                </button>
+                <button class="h-item-button h-item-button-hover">
+                    <div class="h-item-cont">
+                        <img src="./Assests/icon-4.svg" alt="Header-Logo" class="h-item-img" />
+                        <p class="n-menu" >Patients</p>
+                    </div>
+                </button>
+                <button class="h-item-button">
+                    <div class="h-item-cont">
+                        <img src="./Assests/icon-1.svg" alt="Header-Logo" class="h-item-img" />
+                        <p class="n-menu" >Schedule</p>
+                    </div>
+                </button>
+                <button class="h-item-button">
+                    <div class="h-item-cont">
+                        <img src="./Assests/icon-2.svg" alt="Header-Logo" class="h-item-img" />
+                        <p class="n-menu" >Message</p>
+                    </div>
+                </button>
+                <button class="h-item-button">
+                    <div class="h-item-cont">
+                        <img src="./Assests/icon-3.svg" alt="Header-Logo" class="h-item-img" />
+                        <p class="n-menu" >Transactions</p>
+                    </div>
+                </button>
+            </div>
+            <div class="h-item-profile-cont">
+                <img src="./Assests/nav-profile-woman-doc.png" alt="senior-woman-photo" class="h-item-profile-img" />
+                <div class="h-item-profile-name-cont">
+                    <p class="h-item-profile-name-p">Dr.Cristophan</p>
+                    <p class="h-item-profile-name-p2">General Praticioner</p>
+                </div>
+                <img src="./Assests/settings icon.png" alt="settings icon" class="h-item-profile-settings-icon" />
+                <img src="./Assests/menu icon.png" alt="menu icon" class="h-item-profile-menu-icon" />
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="left-profile-item-container">
+            <div class="left-profile-item-header">
+                <p class="left-profile-item-header-heading">Patients</p>
+                <img src="./Assests/search icon.png" alt="search icon" class="left-profile-item-header-img" />
+            </div>
+            <div class="left-profile-items-scroll">
+                <div class="left-profile-items" id="profileItems">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="middle-content-main">
+            <div class="middle-conatiner">
+                <p class="middle-cont-heading">Diagnosis History</p>
+                <div class="graph-container">
+                    <div class="canvas-container">
+                        <div class="canvas-container-header-container">
+                            <div class="canvas-container-heading-container">
+                                <p class="canvas-container-heading">Blood Pressure</p>
+                            </div>
+                            <div class="dropdown-container">
+                                <select id="timeframe" class="dropdown">
+                                    <option value="6-months" selected>Last 6 months</option>
+                                    <option value="3-months">Last 3 months</option>
+                                    <option value="1-month">Last 1 month</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <canvas id="bloodPressureChart"></canvas>
+                    </div>
+                    <div class="card">
+                        <div class="section systolic">
+                            <div class="label">
+                                <span></span>Systolic
+                            </div>
+                            <div class="value">160</div>
+                            <div class="status higher">
+                                <div class="arrow"></div>Higher than Average
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="section diastolic">
+                            <div class="label">
+                                <span></span>Diastolic
+                            </div>
+                            <div class="value">78</div>
+                            <div class="status lower">
+                                <div class="arrow"></div>Lower than Average
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="diagnosis-values">
+                    <div class="diagnosis-values-container">
+                        <div class="diagnosis-val-img-container">
+                            <img src="./Assests/respiratory rate.svg" alt="respiratory-rate"
+                                class="diagnosis-val-img" />
+                        </div>
+                        <div class="diagnosis-val-text-container">
+                            <p class="diagnosis-val-text-cont">Respiratory Rate</p>
+                            <p class="diagnosis-val-text-bpm" id="reapiratory-value"></p>
+                            <p class="diagnosis-val-text-result" id="reapiratory-level"></p>
+                        </div>
+                    </div>
+                    <div class="diagnosis-values-container">
+                        <div class="diagnosis-val-img-container">
+                            <img src="./Assests/temperature.svg" alt="temperature" class="diagnosis-val-img" />
+                        </div>
+                        <div class="diagnosis-val-text-container">
+                            <p class="diagnosis-val-text-cont">Temperature</p>
+                            <p class="diagnosis-val-text-bpm" id="temp-value"></p>
+                            <p class="diagnosis-val-text-result" id="temp-level"></p>
+                        </div>
+                    </div>
+                    <div class="diagnosis-values-container">
+                        <div class="diagnosis-val-img-container">
+                            <img src="./Assests/HeartBPM.svg" alt="HeartBPM" class="diagnosis-val-img" />
+                        </div>
+                        <div class="diagnosis-val-text-container">
+                            <p class="diagnosis-val-text-cont">HeartBPM</p>
+                            <p class="diagnosis-val-text-bpm" id="bpm-value"></p>
+                            <p class="diagnosis-val-text-result" id="bpm-level"></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="diagnostic-list-container">
+                <h2 class="title">Diagnostic List</h2>
+                <div class="table-container">
+                    <table class="diagnostic-table">
+                        <thead>
+                            <tr>
+                                <th>Problem/Diagnosis</th>
+                                <th>Description</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="diagnostic-list-tbody">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <div class="right-middle-container-main">
+            <div class="right-middle-container">
+                <div class="right-middle-profile-img-container">
+                    <img id="profile-image" src="" alt="profileImage" class="right-middle-profile-img" />
+                </div>
+                <div class="right-middle-profile-name-container">
+                    <p class="right-middle-profile-name" id="profile-name"></p>
+                </div>
+                <div class="right-middle-profile-deatils">
+                    <div>
+                        <div class="right-middle-profile-deatils-cont">
+                            <img src="./Assests/BirthIcon.png" alt="home-icon"
+                                class="right-middle-profile-deatils-icon" />
+                            <div class="right-middle-profile-deatils-text-cont">
+                                <p class="right-middle-profile-deatils-text1">Date of Birth</p>
+                                <p class="right-middle-profile-deatils-text2" id="profile-dob"></p>
+                            </div>
+                        </div>
+                        <div class="right-middle-profile-deatils-cont">
+                            <img src="./Assests/FemaleIcon.png" alt="home-icon"
+                                class="right-middle-profile-deatils-icon" />
+                            <div class="right-middle-profile-deatils-text-cont">
+                                <p class="right-middle-profile-deatils-text1">Gender</p>
+                                <p class="right-middle-profile-deatils-text2" id="profile-gender"></p>
+                            </div>
+                        </div>
+                        <div class="right-middle-profile-deatils-cont">
+                            <img src="./Assests/PhoneIcon.png" alt="home-icon"
+                                class="right-middle-profile-deatils-icon" />
+                            <div class="right-middle-profile-deatils-text-cont">
+                                <p class="right-middle-profile-deatils-text1">Contact Info</p>
+                                <p class="right-middle-profile-deatils-text2" id="profile-contact"></p>
+                            </div>
+                        </div>
+                        <div class="right-middle-profile-deatils-cont">
+                            <img src="./Assests/PhoneIcon.png" alt="home-icon"
+                                class="right-middle-profile-deatils-icon" />
+                            <div class="right-middle-profile-deatils-text-cont">
+                                <p class="right-middle-profile-deatils-text1">Emergency Contacts</p>
+                                <p class="right-middle-profile-deatils-text2" id="profile-emergency"></p>
+                            </div>
+                        </div>
+                        <div class="right-middle-profile-deatils-cont">
+                            <img src="./Assests/InsuranceIcon.png" alt="home-icon"
+                                class="right-middle-profile-deatils-icon" />
+                            <div class="right-middle-profile-deatils-text-cont">
+                                <p class="right-middle-profile-deatils-text1">Insurance Provider</p>
+                                <p class="right-middle-profile-deatils-text2" id="profile-insurance"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-middle-profile-deatils-show-info-buttton">
+                        <button class="right-middle-profile-deatils-buttton">Show Information</button>
+                    </div>
+                </div>
+            </div>
+            <div class="right-middle-container2">
+                <div class="lab-results-container">
+                    <h2 class="title">Lab Results</h2>
+                    <div class="list-container" id="lab-results-container">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            let username = 'coalition';
+            let password = 'skills-test';
+            let auth = btoa(`${username}:${password}`);
+
+            $.ajax({
+                url: 'https://fedskillstest.coalitiontechnologies.workers.dev',
+                method: 'GET',
+                headers: {
+                    'Authorization': `Basic ${auth}`,
+                    'Content-Type': 'application/json'
+                },
+                success: function (response) {
+                    const jessicaData = response?.filter(patient => patient.name === 'Jessica Taylor');
+
+                    $('#profile-name').text(jessicaData[0]?.name);
+                    $('#profile-dob').text(jessicaData[0]?.date_of_birth);
+                    $('#profile-gender').text(jessicaData[0]?.gender);
+                    $('#profile-contact').text(jessicaData[0]?.phone_number);
+                    $('#profile-emergency').text(jessicaData[0]?.emergency_contact);
+                    $('#profile-insurance').text(jessicaData[0]?.insurance_type);
+
+                    const profileImageSrc = jessicaData[0]?.profile_picture || './Assests/default-profile-img.png';
+                    const profileImageElement = document.getElementById('profile-image');
+
+                    if (profileImageElement) {
+                        profileImageElement.src = profileImageSrc;
+                    } else {
+                        console.error("Profile image element not found.");
+                    }
+
+                    const profileContainer = document.getElementById("profileItems");
+
+                    const profiles = response.slice(0, 12);
+                    profiles.forEach((profile) => {
+                        const hoverClass = profile.name === "Jessica Taylor" ? "left-profile-item-cont-hover" : "";
+                        const profileItem = `
+                            <div  class="left-profile-item-cont ${hoverClass}">
+                            <div class="left-profile-item-img-cont">
+                                <img src="${profile.profile_picture}" alt="patient image" class="left-profile-img" />
+                            </div>
+                            <div  class="left-profile-item-info-cont">
+                                <div class="left-profile-item-deatils-cont">
+                                <p class="left-profile-item-deatil1">${profile.name}</p>
+                                <p class="left-profile-item-deatil2">${profile.gender}, ${profile.age}</p>
+                                </div>
+                                <div class="left-profile-item-more-img-cont">
+                                <img src="./Assests/more icon.png" alt="more icon" class="left-profile-item-more-img" />
+                                </div>
+                            </div>
+                            </div>
+                        `;
+                        profileContainer.innerHTML += profileItem;
+                    });
+
+                    const labResultsContainer = $('#lab-results-container');
+
+                    labResultsContainer.empty();
+
+                    jessicaData[0]?.lab_results.forEach(result => {
+                        const isActiveClass = result === "CT Scans" ? 'active' : '';
+                        const listItemHTML = `
+                            <div class="list-item ${isActiveClass}">
+                                <span>${result}</span>
+                                <button class="download-btn">
+                                    <img src="./Assests/download.svg" alt="Download" class="icon" />
+                                </button>
+                            </div>
+                        `;
+                        labResultsContainer.append(listItemHTML);
+                    });
+
+                    const diagnosticListTbody = $('#diagnostic-list-tbody');
+
+                    diagnosticListTbody.empty();
+
+                    jessicaData[0]?.diagnostic_list.forEach(item => {
+                        const rowHTML = `
+                        <tr>
+                            <td>${item.name}</td>
+                            <td class="wide-column">${item.description}</td>
+                            <td>${item.status}</td>
+                        </tr>
+                    `;
+                        diagnosticListTbody.append(rowHTML);
+                    });
+
+                    const ctx = document.getElementById('bloodPressureChart').getContext('2d');
+
+                    const sideLabelsPlugin = {
+                        id: 'sideLabels',
+                        afterDraw(chart) {
+                            const { ctx, chartArea: { top, bottom, right } } = chart;
+
+                            ctx.save();
+                            ctx.font = '14px Arial';
+                            ctx.fillStyle = 'rgba(217, 115, 196, 1)';
+                            ctx.fillText('Systolic', right + 20, top + 20);
+                            ctx.fillText('160', right + 20, top + 40);
+                            ctx.fillStyle = 'gray';
+                            ctx.fillText('Higher than Average', right + 20, top + 60);
+
+                            ctx.fillStyle = 'rgba(106, 119, 217, 1)';
+                            ctx.fillText('Diastolic', right + 20, bottom - 60);
+                            ctx.fillText('78', right + 20, bottom - 40);
+                            ctx.fillStyle = 'gray';
+                            ctx.fillText('Lower than Average', right + 20, bottom - 20);
+                            ctx.restore();
+                        },
+                    };
+
+                    const lastSixHistory = jessicaData[0]?.diagnosis_history.slice(-6);
+                    const labels = lastSixHistory.map(item => `${item.month} ${item.year}`);
+                    const systolicData = lastSixHistory.map(item => item.blood_pressure.systolic.value);
+                    const diastolicData = lastSixHistory.map(item => item.blood_pressure.diastolic.value);
+
+                    new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [
+                                {
+                                    label: 'Systolic',
+                                    data: systolicData,
+                                    borderColor: 'rgba(217, 115, 196, 1)',
+                                    backgroundColor: 'rgba(217, 115, 196, 0.2)',
+                                    tension: 0.4,
+                                    borderWidth: 2,
+                                    pointRadius: 5,
+                                    pointBackgroundColor: 'rgba(217, 115, 196, 1)',
+                                },
+                                {
+                                    label: 'Diastolic',
+                                    data: diastolicData,
+                                    borderColor: 'rgba(106, 119, 217, 1)',
+                                    backgroundColor: 'rgba(106, 119, 217, 0.2)',
+                                    tension: 0.4,
+                                    borderWidth: 2,
+                                    pointRadius: 5,
+                                    pointBackgroundColor: 'rgba(106, 119, 217, 1)',
+                                },
+                            ],
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    display: false,
+                                    labels: {
+                                        usePointStyle: true,
+                                    },
+                                },
+                                tooltip: {
+                                    enabled: true,
+                                },
+                            },
+                            layout: {
+
+                            },
+                            scales: {
+                                y: {
+                                    min: 60,
+                                    max: 180,
+                                    ticks: {
+                                        stepSize: 20,
+                                    },
+                                },
+                            },
+                        },
+                    });
+
+                    $('#reapiratory-value').text(jessicaData[0]?.diagnosis_history[0].respiratory_rate.value);
+                    $('#reapiratory-level').text(jessicaData[0]?.diagnosis_history[0].respiratory_rate.levels);
+                    $('#temp-value').text(jessicaData[0]?.diagnosis_history[0].temperature.value);
+                    $('#temp-level').text(jessicaData[0]?.diagnosis_history[0].temperature.levels);
+                    $('#bpm-value').text(jessicaData[0]?.diagnosis_history[0].heart_rate.value);
+                    $('#bpm-level').text(jessicaData[0]?.diagnosis_history[0].heart_rate.levels);
+
+                    const apiDataContainer = $('#api-data');
+                    apiDataContainer.empty();
+                    apiDataContainer.append('<h3>Jessica Taylor Data:</h3>');
+                    apiDataContainer.append('<pre>' + JSON.stringify(jessicaData[0], null, 2) + '</pre>');
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error:', error);
+                    $('#api-data').append('<p>Error loading data. Please try again later.</p>');
+                }
+            });
+        });        
+    </script>
+</body>
+
+</html>
